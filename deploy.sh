@@ -13,7 +13,7 @@ git init
 git add -A
 git commit -m 'deploy'
 
-# if you are deploying to https://erickmontesdk.github.io/<REPO>
+# if you are deploying to https://erickmontesdk.github.io//FrontEnd-Vue-Vuex-Pasteleria/
 git push -f git@github.com:ErickMontesDK/FrontEnd-Vue-Vuex-Pasteleria.git master:gh-pages
 
 cd -
