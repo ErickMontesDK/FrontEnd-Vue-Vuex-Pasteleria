@@ -1,20 +1,28 @@
+<!--Este componente tiene un formato para banner que se usa en dos paginas.
+El mensaje,la imagen y un boton con link a la tienda pueden editarse-->
 <template>
+
     <div class="banner">
-      <img :src="fondo">
-        <h1 >{{title}}</h1>
-        <p >{{msg}}</p>
+      <img :src="fondo"><!--Aqui es la variable con el link de la imagen-->
+        <h1 >{{title}}</h1><!--Mensaje en letras grandes-->
+        <p >{{msg}}</p><!--Texto con letras pequeñas-->
         
+        <!--div con link y con texto-->
         <div class="banbutton" v-if="btext"><router-link to="/Store">{{btext}}</router-link></div>
         
         
     </div>
+
+   <!--Las dos son barras decorativas--> 
   <div class="deco1"></div>
   <div class="deco2"></div>
 </template>
 
 <script>
 export default {
+    //Nombre del componente
     name:"banner",
+    //Todas las variables que manda a la view que lo use
     props: {
     title: String,
     msg: String,
