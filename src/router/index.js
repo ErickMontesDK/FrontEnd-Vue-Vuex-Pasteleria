@@ -1,4 +1,5 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
+//Aqui se importan las views 
 import HomeView from '../views/HomeView.vue'
 import Store from '../views/Store.vue'
 import Orden from '../views/Orden.vue'
