@@ -25,9 +25,9 @@ a store.state-->
             <form @submit.prevent="agregarDatos">
                 <div class="forms">
                     <!--Inputs con datos de cliente-->
-                    <span v-if="!nombre">Nombre: <input type="text" id="nombre" name="nombre" placeholder="Nombre Apellido" v-model="nombre" required><br></span>
-                    <span v-if="!tel">Telefono <input type="text" id="tel" name="tel" placeholder="Celular" maxlength="10" v-model="tel" required><br></span>
-                    <span v-if="!correo">Correo <input type="text" id="correo" name="correo" placeholder="E-mail" v-model="correo" required></span>
+                    <span v-if="!Cart[Cart.length-1]">Nombre: <input type="text" id="nombre" name="nombre" placeholder="Nombre Apellido" v-model="nombre" required><br></span>
+                    <span v-if="!Cart[Cart.length-1]">Telefono <input type="number" id="tel" name="tel" placeholder="Celular" maxlength="10" v-model="tel" required><br></span>
+                    <span v-if="!Cart[Cart.length-1]">Correo <input type="email" id="correo" name="correo" placeholder="E-mail" v-model="correo" required></span>
                 </div >
                 
                 
