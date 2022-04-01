@@ -56,8 +56,8 @@ a store.state-->
         <!--Se repite por el ciclo v-for-->
         <div class="mostrador" v-for="Category in Productos" >
 
-            <!--Cada categoria de producto tiene un estado booleano en store.state
-            Si es true, aparece en la pagina. Si es false, no aparece
+            <!--Cada categoria de producto tiene una key llamada Estado que tiene un valor booleano en store.state
+            Con el v-if, si Estado es true, aparece en la pagina. Si es false, no aparece
             En el index de store se explica mejor-->
             <div class="alle" v-if="Category.Estado" >
                 <div  class="indarreng">
