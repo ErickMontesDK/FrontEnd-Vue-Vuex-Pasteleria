@@ -34,7 +34,7 @@ función @click="store.commit(xxxx)". La forma mas practica fue repetir el codig
                         <div class="card" >
                             <img :src="Productos.Pays.Sabores[0].src">
                             <div class="info">
-                                <span>{{Productos.Pays.Sabores[0].category}} de {{Productos.Pasteles.Sabores[0].sabor}}</span>
+                                <span>{{Productos.Pays.Sabores[0].category}} </span>
                                 
                             </div>
                         </div>  
@@ -44,7 +44,7 @@ función @click="store.commit(xxxx)". La forma mas practica fue repetir el codig
                         <div class="card" >
                             <img :src="Productos.Brownies.Sabores[0].src">
                             <div class="info">
-                                <span>{{Productos.Brownies.Sabores[0].category}} de {{Productos.Pasteles.Sabores[0].sabor}}</span>
+                                <span>{{Productos.Brownies.Sabores[0].category}} </span>
                                 
                             </div>
                         </div>  
@@ -54,7 +54,7 @@ función @click="store.commit(xxxx)". La forma mas practica fue repetir el codig
                         <div class="card" >
                             <img :src="Productos.Galletas.Sabores[0].src">
                             <div class="info">
-                                <span>{{Productos.Galletas.Sabores[0].category}} de {{Productos.Pasteles.Sabores[0].sabor}}</span>
+                                <span>{{Productos.Galletas.Sabores[0].category}} </span>
                                 
                             </div>
                         </div>  
@@ -64,7 +64,7 @@ función @click="store.commit(xxxx)". La forma mas practica fue repetir el codig
                         <div class="card" >
                             <img :src="Productos.Muffin.Sabores[0].src">
                             <div class="info">
-                                <span>{{Productos.Muffin.Sabores[0].category}} de {{Productos.Pasteles.Sabores[0].sabor}}</span>
+                                <span>{{Productos.Muffin.Sabores[0].category}}</span>
                                 
                             </div>
                         </div>  
