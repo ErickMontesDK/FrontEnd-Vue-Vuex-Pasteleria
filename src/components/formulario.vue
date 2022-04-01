@@ -197,7 +197,7 @@ corroborar tu pedido-->
       
     </div>
     <!--Boton de submit. Cuando se da clic, se ejecuta la funcion "agregaPedido" ubicada en el store.Mutations, y le envia
-    la variable pedido. Se explica en script-->
+    la variable pedido. Se explica en el index.js del store-->
     <button v-if="pedido[1]" @click="$store.commit('agregarPedido',pedido)" onclick="alert('Su orden fue enviada. Espere su confirmación en su correo');">Confirmar pedido</button>
     
   </div>
