@@ -1,4 +1,5 @@
 <template>
+<!--Este es un div con texto que sirve de footer-->
     <div class="footer">
         <span>Montes Enterprises</span>
         <span>Innovación Virtual</span>
