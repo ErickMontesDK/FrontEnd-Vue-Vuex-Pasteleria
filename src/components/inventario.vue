@@ -1,10 +1,20 @@
 <template>
+<!--Este componente muestra las cantidades que hay de cada producto-->
+    <!--Div contenedor-->
     <div class="inv">
         <h3>Inventario</h3>
+        <!--Div con toda la info-->
         <div class="ingredientes">
+            <!--Este div se usa para todos los ingredientes-->
+            <!--Con el ciclo v-for, repite este div para cada ingrediente que este en store.state-->
             <div v-for="(ingrediente,index) in Ingred">
+
                 <div class="card">
+                    <!--Index es el nombre de la key-->
                     <span>{{index}}</span>
+                    <!--unit es la unidad de medida del producto-->
+                    <!--Existencia es el la cantidad de producto que hay-->
+                    <!--Total es el maximo de deberia haber en bodega-->
                     <div><span>0{{ingrediente.unit}} </span><progress :value="ingrediente.Existencia" :max="ingrediente.Total">{{ingrediente.Existencia}}%</progress><span> {{ingrediente.Total}}{{ingrediente.unit}}</span></div>
                 </div>
             </div>
@@ -17,6 +27,7 @@
 export default {
     name:"inventario",
     computed:{
+        //llama a los datos en store.state
         Ingred(){return this.$store.state.Ingredientes},
         
     }
