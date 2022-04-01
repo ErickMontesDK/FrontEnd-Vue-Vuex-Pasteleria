@@ -1,11 +1,19 @@
 <template>
-    
+    <!--Este componente muestra todos los pedidos recibidos ya sea en la Store o en el formulario-->
+        <!--Contenedor-->
         <div class="board">
             <h3>Pedidos recibidos</h3>
+
+            <!--Con el ciclo v-for se repite para cada pedido del formulario-->
+            <!--pedido es una lista con objetos que almacena todas las variables de cada pedido-->
+            <!--Fue creada por el componente formulario, enviada al state.store y recuperada aquí
+            En script se llama a los datos en pedido, con Pedidos()-->
             <div v-for="(producto,index) in Pedidos" v-bind:key="pedido">
+                <!--Con v-if, la info aparece siempre y cuando en el pedido este escrito el nombre del cliente-->
                 <div class="listPedidos" v-if="producto.nombre">
                   <ul>
                       <span>Pedido numero {{index}}</span>
+                      <!--Aqui van todos los datos del pedido. Mismo codigo que en el componente formulario-->
                     <li v-if="producto.CantPastel"><span>{{producto.CantPastel}}x</span> Pastel <span>{{producto.tamañoPastel}} de </span>
                     <span> sabor {{producto.saborPastel}}</span><span v-if="producto.saborPastel2"> con {{producto.saborPastel2}}</span>
                     <span v-if="producto.fondant"> decorado con fondant <span v-if="producto.chantilly">y chantilly</span></span><span v-else-if="producto.chantilly"> decorado con chantilly</span><br>
@@ -17,6 +25,7 @@
                     <li v-if="producto.CantGalleta"><span>{{producto.CantGalleta}}x</span><span>Galletas {{producto.tamañoGalleta}}</span><span> de 
                     {{producto.saborGalleta}}</span></li>
                     <hr>
+                    <!--Aqui van los datos del cliente-->
                     <span>Datos de compra:</span>
                     <li v-if="producto.nombre">*Pedido a nombre de {{producto.nombre}}</li>
                     <li v-if="producto.correo">*Correo: {{producto.correo}}</li>
@@ -25,15 +34,24 @@
                 </div>
             </div>
             
-
+            <!--Aqui van los datos de los pedidos hechos en la tienda-->
+            <!--La variable Cart es creada en el componenten productView, luego es enviada a store.state
+            y aqui se recupera la informacion-->
+            <!--Quien recupera la info es en la parte de script con Cart()-->
+            <!--Solo aparece siempre y cuando en la variable haya un dato almacenado-->
             <div class="listPedidos" v-if="Cart[0]">
 
                 <ul>
                     <span>Pedido de store con</span><br>
+                    <!--Muestra cantidad de articulos-->
                     <span>{{Cart.length-1}} artículos:</span><br>
+                    <!--La variable Cart es una lista que posee objetos con los datos del pedido, y aparte
+                    el ultimo objeto contiene los datos del cliente-->
+                    <!--Esto se repite para cada objeto (articulo) en Cart-->
                     <li v-for="producto in Cart">
+                        <!--Esto es para cada objeto que represente a un producto en Cart-->
                         <span v-for="category in producto" ><span v-if="category.categoria">{{category.categoria}} de {{category.sabor}} tamaño {{category.tamaño}}</span></span>
-                        
+                        <!--Esto solo sirve con el ultimo objeto en el Cart, con los datos del cliente-->
                         <span v-if="producto.nombre"><hr>*A nombre de {{producto.nombre}}</span><br>
                         <span v-if="producto.correo">*Correo:<br>{{producto.correo}}</span><br>
                         <span v-if="producto.tel">*Telefono:{{producto.tel}}</span>
@@ -47,8 +65,11 @@
 
 <script>
 export default {
+    //nombre del componente
     name:"pedidoInfo",
+
     computed:{
+        //Esto llama a los datos de store.state, para pedido y cart
         Pedidos(){return this.$store.state.pedido},
         Cart(){return this.$store.state.cart}
     }
