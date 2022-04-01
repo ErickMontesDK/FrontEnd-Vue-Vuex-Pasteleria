@@ -1,22 +1,30 @@
 <template>
+<!--Este componente es la barra de navegacion que aparece en todas las paginas-->
     <section class="header">
+      <!--Estos solo las barras negras decorativas del header-->
       <div class="headerBlack"></div>
       <div class="headerBlack"></div>
       <div class="headerBlack"></div>
       <div class="headerBlack"></div>
       
+      <!--Aqui va una parte de los links-->
       <div class="containerHead">
+        <!--Link a inicio-->
         <router-link to="/">Inicio</router-link> 
-        <router-link to="/Store">Tienda</router-link> 
-        
-          
+        <!--Link a tienda-->
+        <router-link to="/Store">Tienda</router-link>    
       </div>
+
+      <!--Aqui va la otra parte de los links-->
+      <!--Se divide en dos partes para colocar el logo del negocio entre los dos containers-->
       <div class="containerHead">
-          
+        <!--Link al formulario-->  
         <router-link to="/Orden">Orden</router-link>  
-          
+        <!--Link a la parte del administrador-->  
         <router-link to="/Admin">Admin</router-link> 
       </div>
+
+      <!--Aqui la imagen del logo-->
       <div class="imgblank"><img src="../assets/logo.jpg"></div>
       
     </section>
@@ -25,6 +33,7 @@
 
 <script>
 export default {
+  //nombre del componente
     name:"Header"
 }
 </script>
