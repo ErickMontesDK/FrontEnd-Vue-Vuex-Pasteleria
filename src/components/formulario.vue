@@ -1,11 +1,21 @@
 <template>
+<!--Este componente es el formulario de pedido. Te pide la información y luego te muestra para que puedas
+corroborar tu pedido-->
+
+<!--Contenedor de todos los formularios-->
 <div class="formularios">
+  <!--Form del pedido. Al mandar un submit, llama a la funcion "agregarPedido"-->
 <form @submit.prevent="agregarPedido">  
+
+  <!--Aqui esta el formulario con la info de los productos-->
   <div class="check">
-  
+    <!--Info del pastel-->
     <div class="pastel">
+
       <h2>Pedido de pastel</h2>
+
         <div class="container">
+          <!--Input de tamaño de pastel-->
           <div><label for="TamañoPastel">Tamaño:</label>
             <select id="TamañoPastel" name="TamañoPastel" v-model="tamañoPastel">
                 <option value="chico">Chico $150</option>
@@ -13,15 +23,23 @@
                 <option value="grande">Grande $250</option>
             </select>
           </div>
+
+          <!--Input de cantidad con maximo de 5-->
           <div><label for="CantPastel">Cantidad</label>
             <input type="number" max="5" min="0" id=CantPastel v-model="CantPastel"></div>
+
+          <!--Input de sabores-->
+          <!--Los sabores aparecen por un ciclo v-for de todos los sabores en store.state.Pasteles-->  
           <div><label for="Sabores">Sabores: (hasta dos sabores)</label>
             <select id="Sabores" name="saborPastel" v-model="saborPastel" >
                 <option :value="sabor.sabor" v-for="sabor in Pasteles">{{sabor.sabor}}</option> 
             </select>
+            <!--Segundo sabor-->
             <select id="Sabores2" name="saborPastel2" v-model="saborPastel2" >
                 <option :value="sabor.sabor" v-for="sabor in Pasteles">{{sabor.sabor}}</option> 
             </select></div>
+
+          <!--Input de decoraciones-->  
           <div><span>Decoraciones</span>
             <div>
               <label for="fondant">Fondant</label><input type="checkbox" value="Fondant" id=fondant v-model="fondant">
@@ -29,6 +47,8 @@
               
             </div>
           </div>
+
+          <!--Input de dedicatoria en el pastel. Maximo 31 letras-->
           <div>
             <label for="dedicatoria">Dedicatoria</label>
             <input type="text" id="dedicatoria" v-model="dedicatoria" maxlength="31">
@@ -38,10 +58,11 @@
               
     </div>
     
+    <!--Contenedor con formulario del resto de productos-->
     <div class="extras">
       <h2>Otros productos</h2>
       <div>
-        
+          <!--Para acomodo de todo el formulario esta en una tabla-->
           <table>
             <tr>
                 <th>Producto</th>
@@ -50,19 +71,34 @@
                 <th>Cantidad</th>
             </tr>
             <tr>
+<!--El siguiente proceso se repite para cada categoria, solo se comenta esta-->
+                <!--Nombre de categoria-->              
                 <th>Pay</th>
 
                 <th>
+                    <!--Input del sabor del producto. Se guarda el sabor en la variable v-model="saborXXX"-->
+                    <!--Cuando se selecciona el sabor, en script una funcion llama a los datos
+                    del precio para ese sabor en especifico. Para este caso del Pay, la función se llama
+                    preciosPays()-->
                     <select id="payS" name="payS" v-model="saborPay">
+                        <!--Con un ciclo v-for se obtienen todos los sabores-->
+                        <!--Abajo en script esta el llamado a los datos, en este caso, Pays()-->
+                        <!--:value es el valor de esa opcion de sabor, que luego pasa a v-model-->
                         <option v-for="pay in Pays" :value="pay.sabor">{{pay.sabor}}</option>
                     </select></th>
-
+                    
+                    <!--El v-if hace que solo aparezca esta opcion si ya se selecciono el sabor del pay
+                    Obtiene los datos del precio con la funcion preciosPays() y los muestra aqui-->
+                <!--La opcion de tamaño se almacena aqui en v-model="tamañoXXX"-->    
                 <th><select v-if="saborPay" id="payT" name="payT" v-model="tamañoPay">
+                      <!--Con el ciclo v-for muestra cada uno de los tamaños y precios del sabor elegido-->
                       <option v-for="(precios,index) in preciosPays.precio" :value="index"> {{index}} <span> ${{precios}}</span></option>
                   </select></th>
                 
+                <!--Input de cantidad, con maximo de 5-->
                 <th><input type="number" id="cant" name="cant" min="0" max="5" v-model="CantPay"></th>
             </tr>
+<!--Aqui ya es lo mismo pero para cada categoria-->
             <tr>
                 <th>Muffins</th>
 
@@ -112,24 +148,33 @@
       </div>
   </div>      
 
+  <!--Aqui va el formulario de los datos del cliente-->
   <div class="datos">
     <h2>Datos de usuario</h2>
     
       <div>
+          <!--Inputs de texto para cada dato, que almacena con v-model. Tienen escrito un required para que
+          el cliente tenga que rellenar los inputs obligatoriamente antes de enviar el pedido-->
           <span>Nombre: <input type="text" id="nombre" name="nombre" placeholder="Nombre Apellido" v-model="nombre" required><br></span>
           <span>Telefono <input type="text" id="tel" name="tel" placeholder="Celular" maxlength="10" v-model="tel" required><br></span>
           <span>Correo <input type="text" id="correo" name="correo" placeholder="E-mail" v-model="correo" required></span>
+
+          <!--Este boton es el submit del formulario. Una vez dado click, ejecuta la funcion "agregarPedido" que esta abajo
+          en el script. Se explica en el script-->
           <button type="submit">Revisar orden</button>
       </div>
     
   </div>
 </form >
 
+  <!--Aqui se muestra los datos del formulario, estos datos los obtiene de la variable "pedido"-->
   <div class="Confirmacion">
     <h2>Orden</h2>
     <div>
+      <!--Se muestra solo si ya en el pedido se relleno el nombre del cliente-->
       <ul v-if="pedido[pedido.length-1].nombre">
-        
+        <!--Aqui va todo el pedido
+        los v-if son para que en caso de que no se pidiera un producto, no se muestre ese campo-->
         <span>Pedido No.{{pedido.length-1}}</span>
         <li v-if="pedido[pedido.length-1].CantPastel"><span>{{pedido[pedido.length-1].CantPastel}}x</span> Pastel <span>{{pedido[pedido.length-1].tamañoPastel}} de </span>
         <span> sabor {{pedido[pedido.length-1].saborPastel}}</span><span v-if="pedido[pedido.length-1].saborPastel2"> con {{pedido[pedido.length-1].saborPastel2}}</span>
@@ -142,6 +187,7 @@
         <li v-if="pedido[pedido.length-1].CantGalleta"><span>{{pedido[pedido.length-1].CantGalleta}}x</span><span>Galletas {{pedido[pedido.length-1].tamañoGalleta}}</span><span> de 
           {{pedido[pedido.length-1].saborGalleta}}</span></li>
           <hr>
+          <!--Aqui muestra los datos del cliente-->
           <span>Datos de compra:</span>
         <li v-if="pedido[pedido.length-1].nombre">*Pedido a nombre de {{pedido[pedido.length-1].nombre}}</li>
         <li v-if="pedido[pedido.length-1].correo">*Correo: {{pedido[pedido.length-1].correo}}</li>
@@ -150,12 +196,13 @@
       </ul>
       
     </div>
+    <!--Boton de submit. Cuando se da clic, se ejecuta la funcion "agregaPedido" ubicada en el store.Mutations, y le envia
+    la variable pedido. Se explica en script-->
     <button v-if="pedido[1]" @click="$store.commit('agregarPedido',pedido)" onclick="alert('Su orden fue enviada. Espere su confirmación en su correo');">Confirmar pedido</button>
     
   </div>
   
 </div>
-{{preciosMuffin}}
 
 </template>
 
@@ -163,15 +210,20 @@
 
 
 export default {
+  //nombre del componente
   name: 'formulario',
+
   computed:{
+    //Estos llaman a los datos de cada categoria de productos
     Pasteles(){return this.$store.state.Productos.Pasteles.Sabores},
     Pays(){return this.$store.state.Productos.Pays.Sabores},
     Muffins(){return this.$store.state.Productos.Muffin.Sabores},
     Brownies(){return this.$store.state.Productos.Brownies.Sabores},
     Galletas(){return this.$store.state.Productos.Galletas.Sabores},
-    pedidoState(){return this.$store.state.pedido},
 
+    //Se ejecutan una vez seleccionado el sabor del producto
+    //La función que hace esto esta en store.getters. 
+    //Manda el sabor seleccionado y recibe todos los datos de ese sabor  
     preciosPays(){ return this.$store.getters.precioPay(this.saborPay)},
     preciosMuffin(){ return this.$store.getters.precioMuffin(this.saborMuffin)},
     preciosPasteles(){ return this.$store.getters.precioPastel(this.saborPastel)},
@@ -181,6 +233,7 @@ export default {
   },
   data(){
     return{
+      //Estas son todas las variables de los inputs del pedido
       tamañoPastel:'',
       CantPastel:'',
       saborPastel:'',            
@@ -205,19 +258,27 @@ export default {
       CantGalleta:'',
       saborGalleta:'',
 
+      //Datos del cliente
       tel:'',
       correo:'',
       nombre:'',
-
-      pedido:[{
-
-      }],
+      
+      //Una vez enviado el submit, aqui se almacena todos los datos
+      //Puede almacenar varios pedidos
+      pedido:[{}],
       
     }
   },
   methods:{
+    //Esta es la funcion ejecutada por el primer submit 
     agregarPedido(){
       var data= {
+        //La funcion hace dos procesos. Envia las keys a la variable de pedido
+        //y limpia todas las keys de los datos almacenados para que se pueda
+        //enviar otro pedido
+
+        //Aqui envia las keys ya con valores a estas otras keys.
+        //Estas se definen como data
         tamañoPastel:this.tamañoPastel,
         CantPastel:this.CantPastel,
         saborPastel:this.saborPastel,
@@ -246,7 +307,10 @@ export default {
         nombre:this.nombre,
         tel:this.tel,
       };
+      //Esta funcion envia los datos de aqui arriba,la data, a la variable de pedido
       this.pedido.push(data);
+
+      //Aqui limpia a las variables originales con los mismos valores por defecto
       this.tamañoPastel='';
       this.CantPastel='';
       this.saborPastel='';
