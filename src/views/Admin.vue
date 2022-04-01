@@ -1,8 +1,13 @@
 <template>
+<!--Aqui esta lo contenido en la pagina del administrador-->
+<!--Solo son contenedores para acomodar la informacion-->
 <div class="alle">
+  
   <div class="pedido">
+    <!--Componente "Pedido", que muestra todos los pedidos recibidos-->
     <pedidoInfo/> 
   </div>
+  <!--Componenten "Inventario", que muestra cuanto hay de cada ingrediente-->
   <div class="inven">
     <inventario/>
   </div>
@@ -10,12 +15,15 @@
 </template>
 
 <script>
+//importacion de los componentes
 import pedidoInfo from '@/components/pedido.vue'
 import inventario from '@/components/inventario.vue'
 
 export default {
+  //nombre de la view
   name: 'Admin',
   components: {
+    //componentes importados aqui que se exportaran ahora a App.vue
     pedidoInfo,
     inventario
     } 
