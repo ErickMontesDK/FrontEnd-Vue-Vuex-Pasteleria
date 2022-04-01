@@ -1,44 +1,56 @@
 <template>
+<!--Aqui se muestra lo contenido en la pagina de Store/Tienda-->
+
+<!--Aqui esta el componente "Banner" con los datos para personalizarlo-->
+<!--src de la imagen, titulo, sin mensaje y sin div de acceso a tienda-->
   <banner 
   fondo='https://raw.githubusercontent.com/ErickMontesDK/Front-End-HTML-Pasteleria/main/Sources/Banners/tienda.png'
   title="Sabor para cada momento" 
   msg=""
   />
-
+  <!--contenedor-->
   <div class="mostrador">
 
+    <!--Esto solo aparece para la store. Muestra las categorias disponibles y cuantos sabores hay -->
+    <!--Al darle click, ejecuta una funcion en state.mutations que oculta todas las categorias menos la seleccionada-->
+    <!--Las funciones se explican más en el index de store-->
     <div class="navegador">
-      
 
       <div class="products">
         <div class="deco1">Categorias</div>
         <div class="products">
           <ul >
             <li><div>
+                <!--Esta funcion muestra todas las categorias-->
                 <button @click="$store.commit('showAlle')"><span>Todos</span></button>
               </div></li>
             <li>
               <div>
+                <!--Esta funcion muestra solo los pasteles-->
                 <button @click="$store.commit('showPasteles')"><span>Pasteles</span><span>{{Categorys.Pasteles.Sabores.length}}</span></button>
               </div>
             </li>
             <li>
               <div>
+                <!--Esta funcion muestra solo los pays-->
                 <button @click="$store.commit('showPays')"><span>Pays</span><span>{{Categorys.Pays.Sabores.length}}</span></button>
               </div>
             </li>
             <li>
               <div>
+                <!--Esta funcion muestra solo los brownies-->
                 <button @click="$store.commit('showBrownies')"><span>Brownies</span><span>{{Categorys.Brownies.Sabores.length}}</span></button>
               </div>
             </li>
             <li>
               <div>
+                <!--Esta funcion muestra solo las galletas-->
                 <button @click="$store.commit('showGalletas')"><span>Galletas</span><span>{{Categorys.Galletas.Sabores.length}}</span></button>
               </div>
             </li>
             <li>
               <div>
+                <!--Esta funcion muestra solo los muffins-->
                 <button @click="$store.commit('showMuffins')"><span>Muffins</span><span>{{Categorys.Muffin.Sabores.length}}</span></button>
               </div>
             </li>
@@ -50,8 +62,9 @@
     </div>
 
     
-
+    <!--contenedor-->
     <div class="showroom">
+      <!--Aqui esta el componente "productView" que muestra todos los productos, los agrega a "un carrito" y envia el pedido-->
       <productView/>
     </div>
 
@@ -62,14 +75,16 @@
 </template>
 
 <script>
-
+//componentes importados
 import banner from '@/components/banner.vue'
 import productView from '@/components/productView.vue'
 
 
 export default {
+  //nombre de la view
   name: 'HomeView',
   components: {
+    //componentes importados que se exportaran a App.vue
     banner,
     productView
     },
