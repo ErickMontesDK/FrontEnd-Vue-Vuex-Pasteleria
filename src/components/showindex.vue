@@ -1,18 +1,31 @@
 <template>
-
+<!--Este componente muestra los productos que nosotros querramos en la pagina principal-->
+    <!--Contenedor con todos los productos a mostrar-->
     <div class="mostrador"  >
             
                 <div  class="indarreng">
-                    
+                    <!--Esto se repite para cada categoria de producto-->
+                    <!--Se podria hacer con un ciclo v-for, pero para cada categoria tenia que agregar el llamar a una funcion
+                    en especifico ubicada en store.mutations-->
+                    <!--Estas funciones se encargan de ocultar productos en la store dependiendo de que se seleccione-->
+
+                    <!--La info viene de los datos en script, aqui es por Mostrador1, que muestra la info de los pasteles-->
+                    <!--Llama a la funcion @click="$store.commit('showPasteles')", que oculta todo los productos en 
+                    la Tienda excepto los pasteles-->
                     <div class="card" v-for="Category in Mostrador1" @click="$store.commit('showPasteles')">
+                        <!--Aqui va el link hacia la tienda, ya mostrando solo los pasteles-->
                         <router-link to="/Store">
+                            <!--Muestra la imagen del producto-->
                             <img :src="Category.src">
                             </router-link>
                             <div class="info">
+                                <!--Muestra la categoria y el sabor -->
                                 <span>{{Category.category}} de {{Category.sabor}} </span>
                                 
                             </div>
-                        
+                    <!--Se repite lo mismo con las demas categorias-->
+
+
                     </div>
                     <div class="card" v-for="Category in Mostrador2" @click="$store.commit('showPays')">
                         <router-link to="/Store">
@@ -68,7 +81,11 @@ export default {
     name:"showIndex",
     
     computed:{
-        Productos(){return this.$store.state.Productos},
+        //Aqui se obtienen los datos para cada categoria. Estos llaman a las funciones en store.getters.
+        //Cada sabor en cada categoria se puede selecionar para mostrarse al inicio de la pagina
+        //Las funciones en getters filtran cuales son las que se seleccionaron para mostrar
+        //Aqui se llaman a los datos de solo las que se seleccionaron para cada categoria
+        //Se explica más en store.getters
         Mostrador1(){
             return this.$store.getters.mostrador1},
         Mostrador2(){
@@ -79,9 +96,6 @@ export default {
             return this.$store.getters.mostrador4},
         Mostrador5(){
             return this.$store.getters.mostrador5},
-        
-
-
 
     },
 }
