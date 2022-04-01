@@ -1,4 +1,4 @@
-# pasteleria-vuex
+# Pasteleria-Vue
 
 Esta repo contiene el proyecto de pasteleria creado con Vuex.
 El deployment de la pagina es el siguiente: https://black-sand-012e9ca10.1.azurestaticapps.net/#/
