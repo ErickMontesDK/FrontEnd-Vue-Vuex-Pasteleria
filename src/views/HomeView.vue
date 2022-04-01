@@ -1,4 +1,8 @@
 <template>
+<!--Aqui esta lo contenido en la pagina de inicio-->
+
+<!--Aqui esta el componente de "Banner", donde se rellena con las variables para cambiar el banner-->
+<!--src de la imagen, titulo, mensaje y texto del div con link a la tienda-->
   <banner 
   fondo='https://raw.githubusercontent.com/ErickMontesDK/Front-End-HTML-Pasteleria/main/Sources/Banners/Banner.png'
   title="Pasteles y postres para cada ocasión" 
@@ -6,17 +10,21 @@
   btext="Ver productos"
   />
 
+<!--Contenedor con texto-->
   <div class="mostrador">
     <div class="LosMas">
       <h2>Los favoritos</h2>
       <p>Los más buscados en este último mes</p>
       
     </div>
+    <!--Contenedor-->
     <div class="LosMasContainer">
+      <!--Aqui esta el componente "showindex", que muestra los productos que queremor "lucir" en el aparador-->
       <showIndex/>
     </div>
   </div>
   <div>
+    <!--Aqui esta el componente "categorys", que muestra todas las categoria de productos que hay-->
     <category/>
   </div>
 
@@ -25,7 +33,7 @@
 </template>
 
 <script>
-
+//Importa los componentes
 import banner from '@/components/banner.vue'
 import showIndex from '@/components/showindex.vue'
 import category from '@/components/categorys.vue'
@@ -33,8 +41,11 @@ import category from '@/components/categorys.vue'
 
 
 export default {
+  //nombre de la view
   name: 'HomeView',
+
   components: {
+    //componentes que se importaron e igual se exportaran a App.vue
     banner,
     showIndex,
     category
