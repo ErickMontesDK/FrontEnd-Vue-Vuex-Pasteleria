@@ -1,20 +1,34 @@
 <template>
-    <div class="deco1">
+<!--Este elemento muestra todas las categorias de productos, conteniendo un link que los envia a la
+tienda con la categoria seleccionada-->
+    <div class="deco1"><!--Decoracion antes de la seccion/Separador-->
         <div>Nuestros productos</div>
     </div>
 
+    <!--Contenedor-->
     <div class="mostrador"  >
             
                 <div  class="indarreng">
+                    <!--El siguiente formato se repite para cada categoria-->
+                    <!--Primero es el enlace a la tienda-->
+                    <!--@click llama a la función showPasteles que esta en store.mutations-->
                     <router-link to="/Store" @click="$store.commit('showPasteles')">
+                        <!--Este es el contenedor de cada producto. Muestra imagen y nombre-->
                         <div class="card" >
+                            <!--Selecciona la imagen del primer producto almacenado en la categoria-->
+                            <!--Datos en store.state-->
                             <img :src="Productos.Pasteles.Sabores[0].src">
                             <div class="info">
-                                <span>{{Productos.Pasteles.Sabores[0].category}} de {{Productos.Pasteles.Sabores[0].sabor}}</span>
+                                <!--Nombre de la categoria-->
+                                <span>{{Productos.Pasteles.Sabores[0].category}}</span>
                                 
                             </div>
                         </div>  
                     </router-link>   
+
+                    <!--Aqui es lo mismo, solo cambia dependiendo de la categoria-->
+<!--Con un ciclo v-for se podria hacer en automatico este proceso, excepto que no supe como automatizar cada
+función @click="store.commit(xxxx)". La forma mas practica fue repetir el codigo para cada categoria-->
 
                     <router-link to="/Store" @click="$store.commit('showPays')">
                         <div class="card" >
@@ -63,9 +77,11 @@
 
 <script>
 export default {
+    //nombre del componente
     name:"category",
     
     computed:{
+        //aqui se obtienen todos los datos de los productos almacenados en store.state
         Productos(){return this.$store.state.Productos},
         
     },
