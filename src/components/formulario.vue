@@ -156,8 +156,8 @@ corroborar tu pedido-->
           <!--Inputs de texto para cada dato, que almacena con v-model. Tienen escrito un required para que
           el cliente tenga que rellenar los inputs obligatoriamente antes de enviar el pedido-->
           <span>Nombre: <input type="text" id="nombre" name="nombre" placeholder="Nombre Apellido" v-model="nombre" required><br></span>
-          <span>Telefono <input type="text" id="tel" name="tel" placeholder="Celular" maxlength="10" v-model="tel" required><br></span>
-          <span>Correo <input type="text" id="correo" name="correo" placeholder="E-mail" v-model="correo" required></span>
+          <span>Telefono <input type="number" id="tel" name="tel" placeholder="Celular" maxlength="10" v-model="tel" required><br></span>
+          <span>Correo <input type="email" id="correo" name="correo" placeholder="E-mail" v-model="correo" required></span>
 
           <!--Este boton es el submit del formulario. Una vez dado click, ejecuta la funcion "agregarPedido" que esta abajo
           en el script. Se explica en el script-->
