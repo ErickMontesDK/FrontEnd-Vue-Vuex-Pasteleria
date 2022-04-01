@@ -1,10 +1,16 @@
 <template>
+<!--Este componente muestra la info de contacto en la parte de abajo de cada pagina-->
+
+<!--Este es un separador decorativo-->
 <div class="saborea">
     <div class="deco1"></div>
     <span>Saborea la vida</span>
     <div class="deco1"></div>
 </div>
+    <!--Contenedor de la info-->
+    <!--Los datos estan almacenados en store.state-->
   <div class="container">
+      <!--Aqui va la info de contacto-->
       <div>
           <h3>CONTÁCTANOS</h3>
           <div class="text">
@@ -16,6 +22,7 @@
               </div>
           </div>
       </div>
+      <!--Aqui va la ubicacion-->
       <div class="ubicacion">
           <span>Ubicados en {{contacto.direccion}}</span>
           <span>{{contacto.ciudad}}</span>
@@ -25,9 +32,11 @@
 
 <script>
 export default {
+    //nombre del componente
     name:"contact",
     computed:{
         contacto(){
+            //aqui llama a los datos de contacto de store.state
             return this.$store.state.Contacto
             
         }
