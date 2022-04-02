@@ -48,6 +48,11 @@ export default {
   font-weight: 600;
   color: #222222;
 }
+*:hover{
+  color:white;
+  background: #222222;
+  border-radius: 10px;
+}
 
 .header{
   position: relative;
