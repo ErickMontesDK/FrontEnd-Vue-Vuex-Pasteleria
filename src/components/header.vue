@@ -51,7 +51,6 @@ export default {
 *:hover{
   color:white;
   background: #222222;
-  border-radius: 10px;
 }
 
 .header{
